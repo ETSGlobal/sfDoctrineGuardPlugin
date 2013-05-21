@@ -7,7 +7,7 @@ include dirname(__FILE__).'/../../../../../../test/bootstrap/unit.php';
 
 $databaseManager = new sfDatabaseManager($configuration);
 
-$t = new lime_test(3);
+$t = new lime_test(1);
 
 class TestsfGuardPermissionForm extends PluginsfGuardPermissionForm
 {
@@ -20,6 +20,4 @@ class TestsfGuardPermissionForm extends PluginsfGuardPermissionForm
 $t->diag('->__construct()');
 
 $form = new TestsfGuardPermissionForm();
-$t->ok(isset($form['users_list']), '->__construct() does not remove users_list');
-$t->ok(!isset($form['created_at']), '->__construct() removes created_at');
-$t->ok(!isset($form['updated_at']), '->__construct() removes updated_at');
+$t->ok(!isset($form['users_list']), '->__construct() removes fields');

@@ -8,25 +8,20 @@ include dirname(__FILE__).'/../../../../../../test/bootstrap/unit.php';
 $t = new lime_test(8);
 
 $databaseManager = new sfDatabaseManager($configuration);
-$table = Doctrine_Core::getTable('sfGuardUser');
+$table = Doctrine::getTable('sfGuardUser');
 
 // ->retrieveByUsername()
 $t->diag('->retrieveByUsername()');
 
-$table->createQuery()
-  ->delete()
-  ->where('username = ? OR username = ?', array('inactive_user', 'active_user'))
-  ->execute();
+$table->createQuery()->delete()->execute();
 
 $inactiveUser = new sfGuardUser();
-$inactiveUser->email_address = 'email@test.com';
 $inactiveUser->username = 'inactive_user';
 $inactiveUser->password = 'password';
 $inactiveUser->is_active = false;
 $inactiveUser->save();
 
 $activeUser = new sfGuardUser();
-$activeUser->email_address = 'email2@test.com';
 $activeUser->username = 'active_user';
 $activeUser->password = 'password';
 $activeUser->is_active = true;

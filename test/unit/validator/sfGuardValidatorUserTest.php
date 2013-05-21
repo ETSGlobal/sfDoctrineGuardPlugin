@@ -32,11 +32,6 @@ class MockTable
   {
     return self::$user;
   }
-
-  public function retrieveByUsernameOrEmailAddress()
-  {
-    return self::$user;
-  }
 }
 
 class TestValidator extends sfGuardValidatorUser

@@ -6,9 +6,9 @@
  * @package    sfDoctrineGuardPlugin
  * @subpackage form
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id$
+ * @version    SVN: $Id: BasesfGuardUserAdminForm.class.php 24629 2009-12-01 00:34:36Z Jonathan.Wage $
  */
-class BasesfGuardUserAdminForm extends BasesfGuardUserForm
+class BasesfGuardUserAdminForm 
 {
   /**
    * @see sfForm
@@ -16,7 +16,6 @@ class BasesfGuardUserAdminForm extends BasesfGuardUserForm
   public function setup()
   {
     parent::setup();
-
     unset(
       $this['last_login'],
       $this['created_at'],
