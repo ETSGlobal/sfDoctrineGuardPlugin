@@ -8,7 +8,7 @@
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
  * @version    SVN: $Id: BasesfGuardUserAdminForm.class.php 24629 2009-12-01 00:34:36Z Jonathan.Wage $
  */
-class BasesfGuardUserAdminForm 
+class BasesfGuardUserAdminForm extends BasesfGuardUserForm
 {
   /**
    * @see sfForm
