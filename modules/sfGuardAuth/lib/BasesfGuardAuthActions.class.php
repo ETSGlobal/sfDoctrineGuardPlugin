@@ -41,18 +41,10 @@ class BasesfGuardAuthActions extends sfActions
 
   public function executeSignout($request)
   {
-    $accessToken = $this->getUser()->getGuardUser()->getAccessToken();
     $this->getUser()->signOut();
 
-    $ssoProvider = new SsoProvider();
-
-    try {
-      $ssoProvider->logoutUser($accessToken);
-    } catch (\Exception $e) {
-      if (sfConfig::get('sf_logging_enabled'))
-      {
-        sfContext::getInstance()->getLogger()->error($e->getMessage());
-      }
+    if (sfConfig::get('app_features_sso')) {
+      $this->ssoLogout();
     }
 
     $signoutUrl = sfConfig::get('app_sf_guard_plugin_success_signout_url', $request->getReferer());
@@ -153,4 +145,18 @@ class BasesfGuardAuthActions extends sfActions
     }
   }
 
+  private function ssoLogout()
+  {
+    $accessToken = $this->getUser()->getGuardUser()->getAccessToken();
+    $ssoProvider = new SsoProvider();
+
+    try {
+      $ssoProvider->logoutUser($accessToken);
+    } catch (\Exception $e) {
+      if (sfConfig::get('sf_logging_enabled'))
+      {
+        sfContext::getInstance()->getLogger()->error($e->getMessage());
+      }
+    }
+  }
 }
